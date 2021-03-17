@@ -4,12 +4,12 @@ const fs = require('fs');
 const readFilePromise = util.promisify(fs.readFile);
 const writeFilePromise = util.promisify(fs.writeFile);
 
-readFilePromise('./Q&A_data/examplePhotos.csv', 'utf8')
+readFilePromise('./QA_data/examplePhotos.csv', 'utf8')
   .then(data => {
     let photos = data;
     photos = photos.split('\n');
     let photoObjs = [];
-    for (var i = 1; i < photos.length; i ++) {
+    for (var i = 1; i < photos.length - 1; i ++) {
       let photo = photos[i].split(',');
       let photoObj = {
         id: photo[0],
@@ -18,12 +18,12 @@ readFilePromise('./Q&A_data/examplePhotos.csv', 'utf8')
       };
       photoObjs.push(photoObj);
     }
-    readFilePromise('./Q&A_data/exampleAnswers.csv', 'utf8')
+    readFilePromise('./QA_data/exampleAnswers.csv', 'utf8')
       .then(data => {
         let answers = data;
         answers = answers.split('\n');
         let answerObjs = [];
-        for (var i = 1; i < answers.length; i ++) {
+        for (var i = 1; i < answers.length - 1; i ++) {
           let answer = answers[i].split(',');
           let answerObj = {
             id: answer[0],
@@ -32,8 +32,8 @@ readFilePromise('./Q&A_data/examplePhotos.csv', 'utf8')
             date: answer[3],
             answerer_name: answer[4],
             answerer_email: answer[5],
-            reported: answer[6],
-            helpful: answer[8],
+            reported: answer[6] ? answer[6] : null,
+            helpful: answer[8] ? answer[8] : null,
             photos: []
           };
           answerObjs.push(answerObj);
@@ -45,14 +45,18 @@ readFilePromise('./Q&A_data/examplePhotos.csv', 'utf8')
             }
           });
         });
-        readFilePromise('./Q&A_data/exampleQuestions.csv', 'utf8')
+        readFilePromise('./QA_data/exampleQuestions.csv', 'utf8')
           .then(data => {
-            console.log(data);
             let questions = data;
             questions = questions.split('\n');
             let questionObjs = [];
-            for (var i = 1; i < questions.length; i ++) {
+            let productIds = {};
+            for (var i = 1; i < questions.length - 1; i ++) {
               let question = questions[i].split(',');
+              productIds[question[1]] = {
+                product_id: question[1],
+                questions: {}
+              };
               let questionObj = {
                 id: question[0],
                 product_id: question[1],
@@ -72,15 +76,22 @@ readFilePromise('./Q&A_data/examplePhotos.csv', 'utf8')
                   question.answers[answer.id] = answer;
                 }
               });
+              productIds[question.product_id].questions[question.id] = question;
             });
-            return questionObjs;
+            var insertData = [];
+            for (var id in productIds) {
+              insertData.push(productIds[id]);
+            }
+            return insertData;
           })
-          .then(questionObjs => {
-            questionObjs = JSON.stringify(questionObjs);
-            writeFilePromise('test.JSON', questionObjs)
+          .then(insertData => {
+            insertData = JSON.stringify(insertData);
+            insertData = insertData.split('}}}},').join('}}}}\n');
+            insertData = insertData.slice(1, insertData.length - 1);
+            writeFilePromise('./QA_data/test1.JSON', insertData)
           })
           .then(() => {
-            console.log('hooray!!!!!');
+            console.log('success!!!!!');
           })
       })
   })
