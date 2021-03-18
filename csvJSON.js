@@ -47,10 +47,7 @@ readFilePromise('./QA_data/examplePhotos.csv', 'utf8')
         });
         readFilePromise('./QA_data/exampleQuestions.csv', 'utf8')
           .then(data => {
-            let questions = data;
-            questions = questions.split('\n');
-            let questionObjs = [];
-            let productIds = {};
+            let questions = data;question_id
             for (var i = 1; i < questions.length - 1; i ++) {
               let question = questions[i].split(',');
               productIds[question[1]] = {
@@ -88,7 +85,7 @@ readFilePromise('./QA_data/examplePhotos.csv', 'utf8')
             insertData = JSON.stringify(insertData);
             insertData = insertData.split('}}}},').join('}}}}\n');
             insertData = insertData.slice(1, insertData.length - 1);
-            writeFilePromise('./QA_data/test1.JSON', insertData)
+            writeFilePromise('./QA_data/QA.JSON', insertData)
           })
           .then(() => {
             console.log('success!!!!!');
