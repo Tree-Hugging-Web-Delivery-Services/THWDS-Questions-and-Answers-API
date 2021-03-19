@@ -1,3 +1,4 @@
+// Transform database output to response object
 const formatData = (queryData, callback) => {
   var questions = {};
   var answers = {};
@@ -23,6 +24,7 @@ const formatData = (queryData, callback) => {
         date: item.answer_date,
         answerer_name: item.answerer_name,
         helpfulness: item.answer_helpful,
+        reported: item.answer_reported ? true : false,
         photos: []
       }
     }

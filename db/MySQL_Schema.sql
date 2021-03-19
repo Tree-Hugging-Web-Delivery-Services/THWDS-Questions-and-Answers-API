@@ -21,11 +21,11 @@ CREATE TABLE questions (
   questionId INT AUTO_INCREMENT,
   product_id INT,
   question_body TEXT,
-  question_date DATE,
+  question_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   asker_name VARCHAR(64),
   asker_email VARCHAR(64),
-  question_reported INT,
-  question_helpful INT,
+  question_reported INT NOT NULL DEFAULT 0,
+  question_helpful INT NOT NULL DEFAULT 0,
   INDEX (product_id),
   PRIMARY KEY (questionId)
   );
@@ -41,11 +41,11 @@ CREATE TABLE answers (
   answerId INT AUTO_INCREMENT,
   question_id INT,
   answer_body TEXT,
-  answer_date DATE,
+  answer_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   answerer_name VARCHAR(64),
   answerer_email VARCHAR(64),
-  answer_reported INT,
-  answer_helpful INT,
+  answer_reported INT NOT NULL DEFAULT 0,
+  answer_helpful INT NOT NULL DEFAULT 0,
   PRIMARY KEY (answerId),
   FOREIGN KEY (question_id) REFERENCES questions (questionId)
   );
