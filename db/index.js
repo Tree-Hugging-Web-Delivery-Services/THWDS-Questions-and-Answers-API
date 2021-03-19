@@ -1,6 +1,6 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
@@ -35,13 +35,3 @@ module.exports = {
   retrieveQAforProduct,
   retrieveQuestions
 };
-
-/*
-connection.query('SELECT * FROM questions, answers, photos WHERE questions.product_id = 1 AND answers.question_id = questions.id AND photos.answer_id = answers.id', function (error, results, fields) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(results);
-  }
-});
-*/

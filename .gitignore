@@ -1,3 +1,4 @@
 QA_data/
+otherDBfiles/
 node_modules/
 package-lock.json

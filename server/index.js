@@ -1,19 +1,21 @@
 const express = require('express');
 const path = require('path');
 const db = require('../db/index.js');
+const helpers = require('./helpers.js');
 
 const app = express();
 app.use(express.json());
 
 
 app.get('/qa/questions', (req, res) => {
-  console.log(req.query.product_id);
   db.retrieveQAforProduct(req.query.product_id, (err, data) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
     } else {
-      res.status(200).send(data);
+      helpers.formatData(data, (resObj) => {
+        res.status(200).send(resObj);
+      });
     }
   });
 });

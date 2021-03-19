@@ -20,12 +20,12 @@ DROP TABLE IF EXISTS questions;
 CREATE TABLE questions (
   questionId INT AUTO_INCREMENT,
   product_id INT,
-  body TEXT,
-  date_written DATE,
+  question_body TEXT,
+  question_date DATE,
   asker_name VARCHAR(64),
   asker_email VARCHAR(64),
-  reported INT,
-  helpful INT,
+  question_reported INT,
+  question_helpful INT,
   INDEX (product_id),
   PRIMARY KEY (questionId)
   );
@@ -40,12 +40,12 @@ DROP TABLE IF EXISTS answers;
 CREATE TABLE answers (
   answerId INT AUTO_INCREMENT,
   question_id INT,
-  body TEXT,
-  date_written DATE,
+  answer_body TEXT,
+  answer_date DATE,
   answerer_name VARCHAR(64),
   answerer_email VARCHAR(64),
-  reported INT,
-  helpful INT,
+  answer_reported INT,
+  answer_helpful INT,
   PRIMARY KEY (answerId),
   FOREIGN KEY (question_id) REFERENCES questions (questionId)
   );
