@@ -18,7 +18,7 @@ USE QA;
 DROP TABLE IF EXISTS questions;
 
 CREATE TABLE questions (
-  id INT AUTO_INCREMENT,
+  questionId INT AUTO_INCREMENT,
   product_id INT,
   body TEXT,
   date_written DATE,
@@ -27,7 +27,7 @@ CREATE TABLE questions (
   reported INT,
   helpful INT,
   INDEX (product_id),
-  PRIMARY KEY (id)
+  PRIMARY KEY (questionId)
   );
 
 -- ---
@@ -38,7 +38,7 @@ CREATE TABLE questions (
 DROP TABLE IF EXISTS answers;
 
 CREATE TABLE answers (
-  id INT AUTO_INCREMENT,
+  answerId INT AUTO_INCREMENT,
   question_id INT,
   body TEXT,
   date_written DATE,
@@ -46,8 +46,8 @@ CREATE TABLE answers (
   answerer_email VARCHAR(64),
   reported INT,
   helpful INT,
-  PRIMARY KEY (id),
-  FOREIGN KEY (question_id) REFERENCES questions (id)
+  PRIMARY KEY (answerId),
+  FOREIGN KEY (question_id) REFERENCES questions (questionId)
   );
 
 -- ---
@@ -58,11 +58,11 @@ CREATE TABLE answers (
 DROP TABLE IF EXISTS photos;
 
 CREATE TABLE photos(
-  id INT AUTO_INCREMENT,
+  photoId INT AUTO_INCREMENT,
   answer_id INT,
   url VARCHAR(240),
-  PRIMARY KEY (id),
-  FOREIGN KEY (answer_id) REFERENCES answers (id)
+  PRIMARY KEY (photoId),
+  FOREIGN KEY (answer_id) REFERENCES answers (answerId)
   );
 
 LOAD DATA INFILE '/var/lib/mysql/questions.csv'
