@@ -1,5 +1,9 @@
 // Transform database output to response object
 const formatData = (queryData, callback) => {
+  if (queryData.length === 0) {
+    callback({});
+    return;
+  }
   var questions = {};
   var answers = {};
   var photos = {};

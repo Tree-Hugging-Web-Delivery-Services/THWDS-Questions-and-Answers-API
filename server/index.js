@@ -4,7 +4,15 @@ const db = require('../db/index.js');
 const helpers = require('./helpers.js');
 
 const app = express();
+
 app.use(express.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  //res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
 
 // Get question & answer data for a product
 app.get('/qa/questions', (req, res) => {
@@ -14,7 +22,12 @@ app.get('/qa/questions', (req, res) => {
       res.sendStatus(500);
     } else {
       helpers.formatData(data, (resObj) => {
-        res.status(200).send(resObj);
+        if (Object.keys(resObj).length === 0) {
+          res.sendStatus(404);
+        } else {
+          res.status(200).send(resObj);
+        }
+
       });
     }
   });
@@ -68,7 +81,7 @@ app.put('/qa/:path/:id/report', (req, res) => {
   });
 });
 
-const port = 3000;
+const port = 3001;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
