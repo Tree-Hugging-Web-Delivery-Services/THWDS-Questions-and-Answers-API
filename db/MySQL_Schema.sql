@@ -1,19 +1,15 @@
---
+-- ---
+-- Database 'QA'
 -- ---
 
--- DROP TABLE IF EXISTS `products`;
---
--- CREATE TABLE `products` (
---   `id` INTEGER AUTO_INCREMENT
--- );
+DROP DATABASE IF EXISTS QA;
+CREATE DATABASE QA;
+USE QA;
 
 -- ---
 -- Table 'questions'
 --
 -- ---
-DROP DATABASE IF EXISTS QA;
-CREATE DATABASE QA;
-USE QA;
 
 DROP TABLE IF EXISTS questions;
 
