@@ -1,0 +1,27 @@
+{
+  "name": "thwds-questions-and-answers-api",
+  "version": "1.0.0",
+  "description": "Questions and Answers API repo",
+  "main": "csvJSON.js",
+  "scripts": {
+    "start": "npx nodemon ./server/index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tree-Hugging-Web-Delivery-Services/THWDS-Questions-and-Answers-API.git"
+  },
+  "author": "Kevin Pierce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tree-Hugging-Web-Delivery-Services/THWDS-Questions-and-Answers-API/issues"
+  },
+  "homepage": "https://github.com/Tree-Hugging-Web-Delivery-Services/THWDS-Questions-and-Answers-API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
