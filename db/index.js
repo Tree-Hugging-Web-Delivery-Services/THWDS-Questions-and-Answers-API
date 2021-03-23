@@ -2,15 +2,19 @@ const mysql = require('mysql');
 const helpers = require('./helpers.js');
 
 const connection = mysql.createConnection({
-  host: '3.129.13.242',
+  host: '18.222.158.206',
   user: 'root',
-  password: '',
+  password: 'password',
   database: 'QA'
 });
 
 connection.connect((err) => {
-  console.log(err);
-  console.log('Connected to the DB!!!!!!!')
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('Connected to the DB!!!!!!!');
+  }
+
 });
 
 // Select question & answer data for a product
