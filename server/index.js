@@ -7,7 +7,8 @@ const app = express();
 
 app.use(express.json());
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "http://18.217.19.253/");
+  //res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   //res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");
   res.header("Access-Control-Allow-Headers", "*");
