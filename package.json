@@ -4,8 +4,8 @@
   "description": "Questions and Answers API repo",
   "main": "csvJSON.js",
   "scripts": {
-    "start-dev": "npx nodemon ./server/index.js",
     "start": "node ./server/index.js",
+    "start-dev": "npx nodemon ./server/index.js",
     "test": "test"
   },
   "repository": {
