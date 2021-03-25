@@ -7,12 +7,17 @@ const app = express();
 
 app.use(express.json());
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://18.217.19.253/");
+  //res.header("Access-Control-Allow-Origin", "http://18.217.19.253/");
   //res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "*");
   //res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");
   res.header("Access-Control-Allow-Headers", "*");
   next();
+});
+
+app.get('/loaderio-98d81419075b31a0dd124f4a775546a4/', (req, res) => {
+  res.sendFile('/home/ubuntu/SDC/THWDS-Questions-and-Answers-API/server/loaderio-98d81419075b31a0dd124f4a775546a4.txt');
 });
 
 // Get question & answer data for a product
@@ -82,7 +87,7 @@ app.put('/qa/:path/:id/report', (req, res) => {
   });
 });
 
-const port = 3001;
+const port = 3005;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
