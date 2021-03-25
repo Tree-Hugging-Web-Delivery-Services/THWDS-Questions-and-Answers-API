@@ -16,8 +16,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/loaderio-98d81419075b31a0dd124f4a775546a4/', (req, res) => {
-  res.sendFile('/home/ubuntu/SDC/THWDS-Questions-and-Answers-API/server/loaderio-98d81419075b31a0dd124f4a775546a4.txt');
+app.get('/loaderio-d53a2dcde9e2c55c7280368deab5b897/', (req, res) => {
+  res.sendFile('/home/ubuntu/SDC/THWDS-Questions-and-Answers-API/server/loaderio-d53a2dcde9e2c55c7280368deab5b897.txt');
 });
 
 // Get question & answer data for a product
